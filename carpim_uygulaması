@@ -1,44 +1,57 @@
- List<int> list = new List<int>();
- int int_carpım = 0,elde = 0;
- string sayı1, sayı2, str_carpım = null;
- sayı1 = ReadLine();
- sayı2 = ReadLine();
- WriteLine("x------");
- void elde_alma(string sayı)
- {
-     elde = ToInt32(sayı[0].ToString());
-     list.Add(elde);
-     str_carpım = sayı[1].ToString() + str_carpım;
- }
- for (int i = sayı2.Length - 1; i >= 0; i--)
- {
-     for (int k = sayı1.Length - 1; k >= 0; k--)
-     {
-         int_carpım = ToInt32(sayı1[k].ToString()) * ToInt32(sayı2[i].ToString()) + elde;
-         elde = 0;
-         if (int_carpım > 9)
-         {
-             elde_alma(int_carpım.ToString());
-         }
-         else
-         {
-             str_carpım = int_carpım.ToString() + str_carpım;
-         }
-     }
-     if (elde != 0)
-     {
-         str_carpım = elde + str_carpım;
-         elde = 0;
-     }
-     WriteLine(str_carpım);
-     str_carpım = "";
- }
- WriteLine("+------");
- WriteLine(ToInt32(sayı1) * ToInt32(sayı2));
- WriteLine("------");
- Write("Eldeler: ");
- for (int i = 0; i < list.Count; i++)
- {
-     Write(list[i] + (i < list.Count-1 ? " - " : ""));
- }
- ReadLine();
+List<int> elde_list = new List<int>();
+int int_carpım = 0, elde = 0;
+string sayı1, sayı2, str_carpım = null, sayı = null, bosluk = " ";
+sayı1 = ReadLine();
+sayı2 = ReadLine();
+Clear();
+ForegroundColor = ConsoleColor.Cyan;
+for (int i = 0; i < sayı2.Length; i++)
+{
+    Write(" ");
+}
+WriteLine(sayı1);
+for (int k = 0; k < sayı1.Length-sayı2.Length+ sayı2.Length; k++)
+{
+    Write(" ");
+}
+WriteLine(sayı2);
+WriteLine(bosluk+"x-----");
+bosluk = bosluk.PadRight(sayı2.Length, ' ');
+ForegroundColor = ConsoleColor.Yellow;
+for (int i = sayı2.Length - 1; i >= 0; i--)
+{
+    for (int k = sayı1.Length - 1; k >= 0; k--)
+    {
+        int_carpım = ToInt32(sayı1[k].ToString()) * ToInt32(sayı2[i].ToString()) + elde;
+        elde = 0;
+        if (int_carpım > 9)
+        {
+            sayı = int_carpım.ToString();
+            elde = ToInt32(sayı[0].ToString());
+            elde_list.Add(elde);
+            str_carpım = sayı[1] + str_carpım;
+        }
+        else
+            str_carpım = int_carpım.ToString() + str_carpım;
+    }
+    if (elde != 0)
+        str_carpım = elde + str_carpım;
+
+
+    WriteLine(bosluk+ str_carpım);
+    str_carpım = "";
+    elde = 0;
+    bosluk= bosluk.Remove(bosluk.Length - 1);
+}
+WriteLine("+------");
+ForegroundColor=ConsoleColor.Green;
+WriteLine(ToInt32(sayı1) * ToInt32(sayı2));
+WriteLine("------");
+ForegroundColor=ConsoleColor.Blue;
+
+Write("Eldeler: ");
+for (int i = 0; i < elde_list.Count; i++)
+{
+    Write(elde_list[i] + (i < elde_list.Count - 1 ? " - " : ""));
+}
+ReadLine();
