@@ -1,25 +1,17 @@
-            using static System.Console;
-            using static System.Convert;
             Random rnd = new Random();
-            byte s1, kt;
-            do
+            byte sayı, kt = 0;
+            sayı = (byte)rnd.Next(1, 11);
+            for (int i = 1;kt != sayı; i++) 
             {
-             s1 = (byte)rnd.Next(1, 11);
-                Write("1-10 arsı tahmin :");
+                Write("1-10 arsı tahmin: ");
                 try
                 {
-             kt = ToByte(ReadLine());
+                    kt = ToByte(ReadLine());
                 }
                 catch (Exception)
                 {
-
                     kt = 0;
                 }
-
-             WriteLine(kt == s1 ?"doğru cevap tebrikler :)":"yanlış cevap tekrar :(");
-                if (kt == s1)
-                    break;
-            } while (true);
-
-
+                WriteLine(i +".tekrar" + "\n"+ (kt == sayı ? "doğru cevap tebrikler :)" : "yanlış cevap tekrar :("));
+            } 
             ReadLine();
