@@ -1,17 +1,17 @@
-            Random rnd = new Random();
-            byte sayı, kt = 0;
-            sayı = (byte)rnd.Next(1, 11);
-            for (int i = 1;kt != sayı; i++) 
-            {
-                Write("1-10 arsı tahmin: ");
-                try
-                {
-                    kt = ToByte(ReadLine());
-                }
-                catch (Exception)
-                {
-                    kt = 0;
-                }
-                WriteLine(i +".tekrar" + "\n"+ (kt == sayı ? "doğru cevap tebrikler :)" : "yanlış cevap tekrar :("));
-            } 
-            ReadLine();
+Random rnd = new Random();
+byte sayı, kt = 0;
+sayı = (byte)rnd.Next(1, 11);
+for (int i = 1;kt != sayı; i++) 
+{
+    Write("1-10 arsı tahmin: ");
+    try
+    {
+        kt = ToByte(ReadLine());
+    }
+    catch (Exception)
+    {
+        kt = 0;
+    }
+    WriteLine(i +".tekrar" + "\n"+ (kt == sayı ? "doğru cevap tebrikler :)" : "yanlış cevap tekrar :("));
+} 
+ReadLine();
