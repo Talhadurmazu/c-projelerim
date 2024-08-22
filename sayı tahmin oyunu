@@ -1,0 +1,25 @@
+            using static System.Console;
+            using static System.Convert;
+            Random rnd = new Random();
+            byte s1, kt;
+            do
+            {
+             s1 = (byte)rnd.Next(1, 11);
+                Write("1-10 arsı tahmin :");
+                try
+                {
+             kt = ToByte(ReadLine());
+                }
+                catch (Exception)
+                {
+
+                    kt = 0;
+                }
+
+             WriteLine(kt == s1 ?"doğru cevap tebrikler :)":"yanlış cevap tekrar :(");
+                if (kt == s1)
+                    break;
+            } while (true);
+
+
+            ReadLine();
