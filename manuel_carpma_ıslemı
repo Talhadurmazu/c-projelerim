@@ -1,0 +1,101 @@
+ List<int> t_elde_list = new List<int>();
+ List<int> elde_list = new List<int>();
+ int int_math_ıslem = 0, elde = 0;
+ string sayı1, sayı2, str_math_ıslem = null, bosluk = " ";
+ while (true)
+ {
+     Write("1. sayı: ");
+     sayı1 = ReadLine();
+     Write("2. sayı: ");
+     sayı2 = ReadLine();
+     try
+     {
+         ToInt32(sayı1);
+         ToInt32(sayı2);
+         break;
+     }
+     catch (Exception)
+     {
+         WriteLine("hatalı giriş yaptınız lütfen sayı formatında giriniz!");
+     }
+ }
+ string[] sonuc = new string[sayı2.Length];
+ Clear();
+ bosluk = bosluk.PadRight(sayı2.Length,' ');
+ ForegroundColor = ConsoleColor.Cyan;
+ WriteLine(bosluk+sayı1);
+ WriteLine(bosluk+sayı2);
+ bosluk = "-";
+ bosluk = bosluk.PadRight(sayı1.Length+sayı2.Length,'-');
+ WriteLine("x"+bosluk);
+ bosluk = null;
+ for (int j = 0, i = sayı2.Length - 1; i >= 0; i--,j++) 
+ {
+     for (int k = sayı1.Length - 1; k >= 0; k--)
+     {
+         int_math_ıslem = ToInt32(sayı1[k].ToString()) * ToInt32(sayı2[i].ToString()) + elde;
+         elde = 0;
+         if (int_math_ıslem > 9)
+         {
+             elde = int_math_ıslem / 10;
+             elde_list.Add(elde);
+             str_math_ıslem = (int_math_ıslem %10) + str_math_ıslem;
+         }
+         else
+             str_math_ıslem = int_math_ıslem.ToString() + str_math_ıslem;
+     }
+     if (elde != 0)
+         str_math_ıslem = elde + str_math_ıslem;
+     sonuc[j] = str_math_ıslem + bosluk;
+     str_math_ıslem = null;
+     elde = 0; 
+     bosluk += "0";
+ }
+ bosluk = " ";
+ bosluk = bosluk.PadRight(sayı2.Length, ' '); 
+ ForegroundColor = ConsoleColor.Yellow;
+ for (int i = 0; i < sonuc.Length; i++)
+ {
+     WriteLine(bosluk + sonuc[i]);
+     bosluk = bosluk.Remove(bosluk.Length - 1);
+ }
+ bosluk = bosluk.PadRight(sonuc[sonuc.Length - 1].Length,'-');
+ WriteLine("+"+bosluk);
+ elde = 0;
+ str_math_ıslem = null;
+ for (int k = 1; k < sonuc[sonuc.Length-1].Length+1; k++)
+ {
+     int_math_ıslem = 0;
+     foreach (var item in sonuc)
+     {
+         if (item.Length >= k)
+         {
+             int_math_ıslem += ToInt32(item[item.Length - k].ToString()) + elde;
+             elde = 0;
+         }
+     }
+     if (int_math_ıslem > 9)
+     {
+         elde = int_math_ıslem /10;
+         t_elde_list.Add(elde);
+         str_math_ıslem = (int_math_ıslem %10) + str_math_ıslem;
+     }
+     else
+         str_math_ıslem = int_math_ıslem.ToString() + str_math_ıslem;
+ }
+ if (elde != 0)
+     str_math_ıslem = elde.ToString()+str_math_ıslem;
+ ForegroundColor = ConsoleColor.Green;
+ WriteLine(str_math_ıslem);
+ ForegroundColor = ConsoleColor.Blue;
+ Write("+ Eldeleri: ");
+ for (int i = 0; i < t_elde_list.Count; i++)
+ {
+     Write(t_elde_list[i] + (i < t_elde_list.Count - 1 ? " - " : ""));
+ }
+ Write("\nx Eldeleri: ");
+ for (int i = 0; i < elde_list.Count; i++)
+ {
+     Write(elde_list[i] + (i < elde_list.Count - 1 ? " - " : ""));
+ }
+ ReadLine();
