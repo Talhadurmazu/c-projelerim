@@ -1,14 +1,14 @@
 public static string sıfrele(string mtn)
 {
-    int ılk = ToInt32(mtn[0]) * 2;
-    string mtn2 = null;
+    int ılk_harf = mtn[0] * 2;
+    string donecek = null;
     int sayı;
-    foreach (char item in mtn)
+    foreach (char harf in mtn)
     {
-        sayı = ToInt32(item);
-        sayı = sayı * 2 + ToInt32(ılk);
-        mtn2 = mtn2 + ToChar(sayı);
+        sayı = harf;
+        sayı = (sayı * 2) + ılk_harf;
+        donecek = donecek + ToChar(sayı);
     }
-    mtn2 = ToChar(ılk) + mtn2;
-    return mtn2;
+    donecek = ToChar(ılk_harf) + donecek;
+    return donecek;
 }
